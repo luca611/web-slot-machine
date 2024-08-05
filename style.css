@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Slackey&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
+/*---------page styles---------*/
+body {
+  text-align: center;
+  font-family: "Slackey", sans-serif;
+  background-color: #FAEFD6;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  margin-top: -1rem;
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+h1 {
+  font-size: 5rem;
+  color: #FF8C37;
+}
+
+h2 {
+  font-size: 3rem;
+  color: #FFEEC6;
+}
+
+/*---------fonts----------*/
+.gaegu {
+  font-family: "Gaegu", sans-serif;
+}
+
+.noto-color-emoji-regular {
+  font-family: "Noto Color Emoji", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*---------game styles---------*/
+
+/*winning message*/
+.hide-message {
+  display: none;
+}
+
+.winning-message {
+  position: fixed;
+  width: 50%;
+  padding: 2rem;
+  font-size: 2rem;
+  background-color: #09AFB4;
+  border-radius: 10px;
+  margin: auto;
+  top: 20%;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  animation: popup 0.5s ease-in-out;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*winning message components*/
+.play-again {
+  background-color: #FF8C37;
+  color: #FAEFD6;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ;
+  font-family: "Slackey", sans-serif;
+}
+
+.play-again:hover {
+  transform: scale(1.1), rotate(3deg);
+}
+
+.congrats{
+  font-size: 2rem;
+  font-family: "Gaegu", sans-serif;
+  color: #FFEEC6;
+}
+
+.spin{
+    width: 100%;
+    background-color: #FF8C37;
+    border-radius: 5px;
+    padding: 1rem;
+    font-family: "Slackey";
+    color: white;
+    border: none;
+    transition: all 0.3s;
+}
+
+.spin:hover{
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}
+
+.bigIcon {
+  font-size: 4rem;
+  margin-bottom: -1rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.note{
+    font-size: 0.9rem;
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*game board*/
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px auto;
+  width: 60vw;
+  max-width: 30rem;
+}
+
+
+.ResultContainer{
+    background-color: white;
+    width: 100%;
+    height: 20vh;
+    border-radius: 10px;
+    border: #FF8C37 solid 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+}
+
+
+
+.confetti {
+  opacity: 0;
+  position: absolute;
+  width: 1rem;
+  height: 1.5rem;
+  animation: confettiRain 5s infinite;
+}
+
+
+@keyframes confettiRain {
+  0% {
+    opacity: 1;
+    margin-top: -100vh;
+    margin-left: -200px;
+  } 
+  
+  100% {
+    opacity: 1;
+    margin-top: 100vh;
+    margin-left: 200px;
+  }
+}
+
+
+/*----media queries----*/
+
+@media (min-width: 0px) {
+  .game-board {
+    width: 90vw;
+    max-width: 90vw;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .congrats{
+    font-size: 1.5rem;
+  }
+
+  .winning-message {
+    width: auto;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+  }
+
+  .bigIcon{
+    font-size: 9rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .game-board {
+    width: 65vw;
+    max-width: 60rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+
+  h2{
+    font-size: 2rem;
+
+  }
+
+  .congrats{
+    font-size: 1.5rem;
+  }
+
+  .winning-message{
+    width: 75%;
+    bottom: 20%;
+  }
+
+  .bigIcon{
+    font-size: 5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .game-board {
+    width: 35vw;
+    max-width: 30rem;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+
+  h2{
+    font-size: 2rem;
+  }
+
+  .winning-message{
+    width: 60%;
+    bottom: 20%;
+  }
+}
+
+@media (min-width: 2000px) {
+  .game-board {
+    width: 40vw;
+    max-width: 35rem;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+
+  h2{
+    font-size: 3rem;
+  }
+
+  .winning-message{
+    width: 40%;
+    bottom: 20%;
+  }
+}

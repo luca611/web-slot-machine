@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Slot Machine</title>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+</head>
+
+<body>
+
+    <div id="lost" class="hide-message">
+        <p class="bigIcon">😰</p>
+        <h2>Oh no! you ended in bankrupt!</h2>
+        <p id="spins" class="congrats">Loading...</p>
+        <button onclick="resetGame()" class="play-again">Restart</button>
+    </div>
+
+    <div class="" id="overlay"></div>
+    <h1>Slot Machine</h1>
+    <p class="gaegu">Spin the wheel and hope for the best! 🦝</p>
+    <p>credit: <b id="credit" class="creditsValue">loading</b> 🎟️</p>
+    <div id="GameBody" class="game-board">
+        <div class="ResultContainer">
+            <span id="slot-machine-1">🦝</span>
+        </div>
+        <div class="ResultContainer">
+            <span id="slot-machine-2">🦝</span>
+        </div>
+        <div class="ResultContainer">
+            <span id="slot-machine-3">🦝</span>
+        </div>
+        <br>
+        <button id="spin-button" class="spin" onclick="spinSlotMachines()"> SPIN </button>
+    </div>
+    <br>
+    <br>
+    <p class="gaegu note"><i>Note that this game was made just for fun with virtual credit <br>and does not promote
+            gambling in any way.</i></p>
+</body>
+
+</html>
