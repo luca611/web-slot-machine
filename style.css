@@ -165,29 +165,19 @@ h2 {
   font-size: 5rem;
 }
 
-.confetti {
-  opacity: 0;
-  position: absolute;
-  width: 1rem;
-  height: 1.5rem;
-  animation: confettiRain 5s infinite;
+
+.spinAnimation {
+  animation: spin 2.3s linear;
 }
 
-
-@keyframes confettiRain {
+@keyframes spin {
   0% {
-    opacity: 1;
-    margin-top: -100vh;
-    margin-left: -200px;
-  } 
-  
+    transform: rotate(0deg);
+  }
   100% {
-    opacity: 1;
-    margin-top: 100vh;
-    margin-left: 200px;
+    transform: rotate(360deg);
   }
 }
-
 
 /*----media queries----*/
 
@@ -242,7 +232,7 @@ h2 {
     font-size: 1.5rem;
   }
 
-  .winning-message{
+  .show-message{
     width: 75%;
     bottom: 20%;
   }
@@ -267,7 +257,7 @@ h2 {
     font-size: 2rem;
   }
 
-  .winning-message{
+  .show-message{
     width: 60%;
     bottom: 20%;
   }
@@ -288,7 +278,7 @@ h2 {
     font-size: 3rem;
   }
 
-  .winning-message{
+  .show-message{
     width: 40%;
     bottom: 20%;
   }

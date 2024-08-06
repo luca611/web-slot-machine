@@ -10,10 +10,10 @@
 </head>
 
 <body>
-
+    <!-- Messages -->
     <div id="lost" class="hide-message">
         <p class="bigIcon">😰</p>
-        <h2>Oh no! you ended in bankrupt!</h2>
+        <h2>Oh no! You ended up bankrupt!</h2>
         <p id="spins" class="congrats">Loading...</p>
         <button onclick="resetGame()" class="play-again">Restart</button>
     </div>
@@ -26,9 +26,13 @@
     </div>
 
     <div class="" id="overlay"></div>
+    
+    <!-- Game -->
     <h1>Slot Machine</h1>
     <p class="gaegu">Spin the wheel and hope for the best! 🦝</p>
     <p>credit: <b id="credit" class="creditsValue">loading</b> 🎟️</p>
+
+    <!-- Slot Machine -->
     <div id="GameBody" class="game-board">
         <div class="ResultContainer">
             <span id="slot-machine-1">🦝</span>
@@ -42,9 +46,11 @@
         <br>
         <button id="spin-button" class="spin" onclick="spinSlotMachines()"> SPIN </button>
     </div>
+
+    <!-- Message for the user -->
     <br>
     <br>
-    <p class="gaegu note"><i>Note that this game was made just for fun with virtual credit <br>and does not promote
+    <p class="gaegu note"><i>Note that this game was made just for fun with virtual credit <br>and <b>does not promote</b>
             gambling in any way.</i></p>
 </body>
 

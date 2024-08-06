@@ -1,8 +1,10 @@
-
 var slotMachines = [];
 var credit;
 var spinCounter = 0;
 var spinButton;
+var winCount;
+
+// Function to initialize the game when the window loads
 window.addEventListener('load', () => {
     slotMachines = [
         document.getElementById('slot-machine-1'),
@@ -11,13 +13,15 @@ window.addEventListener('load', () => {
     ];
     credit = parseInt(localStorage.getItem('credit')) || 100;
     spinCounter = parseInt(localStorage.getItem('spinCounter')) || 0;
-
+    winCount = parseInt(localStorage.getItem('winCount')) || 0;
+    
     spinButton = document.getElementById('spin-button');
     document.getElementById('credit').textContent = credit;
 
     if (credit < 5) {
         spinButton.innerText = 'Not enough credit';
         spinButton.setAttribute('disabled', 'disabled');
+        showLostMessage();
     } else {
         spinButton.textContent = 'Spin';
         spinButton.setAttribute('onclick', 'spinSlotMachines()');
@@ -28,10 +32,15 @@ const emojis = ['🍕', '🤖', '💻', '🎟️', '🃏', '🦝'];
 
 let spinning = false;
 
+// Function to spin the slot machines
 function spinSlotMachines() {
     if (!spinning) {
         spinCounter++;
         localStorage.setItem('spinCounter', spinCounter);
+
+        slotMachines.forEach(slotMachine => {
+            slotMachine.classList.toggle('spinAnimation');
+        });
 
         spinButton.textContent = 'Spinning';
         spinButton.removeAttribute('onclick');
@@ -47,6 +56,9 @@ function spinSlotMachines() {
                 slotMachine.textContent = randomEmoji;
             });
             if (spinCount >= 25) {
+                slotMachines.forEach(slotMachine => {
+                    slotMachine.classList.toggle('spinAnimation');
+                });
                 clearInterval(spinInterval);
                 spinning = false;
 
@@ -55,6 +67,8 @@ function spinSlotMachines() {
 
                 credit += checkWin();
                 if (checkWin() > 4) {
+                    winCount++;
+                    localStorage.setItem('winCount', winCount);
                     displayWinningMessage(checkWin());
                 }
                 document.getElementById('credit').textContent = credit;
@@ -64,6 +78,7 @@ function spinSlotMachines() {
                     spinButton.innerText = 'Not enough credit';
                     spinButton.setAttribute('disabled', 'disabled');
                     showLostMessage();
+                    localStorage.setItem('credit', 1);
                 } else {
                     spinButton.textContent = 'Spin';
                     spinButton.setAttribute('onclick', 'spinSlotMachines()');
@@ -76,6 +91,7 @@ function spinSlotMachines() {
     spinButton.textContent = 'Spinning';
 }
 
+// Function to check if there is a winning combination
 function checkWin() {
     const firstSlotText = slotMachines[0].textContent;
     const secondSlotText = slotMachines[1].textContent;
@@ -83,25 +99,37 @@ function checkWin() {
 
     if (firstSlotText === '🍕' && secondSlotText === '🍕' && thirdSlotText === '🍕') {
         return 5;
-    } else if (firstSlotText === '🤖' && secondSlotText === '🤖' && thirdSlotText === '🤖') {
+    }
+    
+    if (firstSlotText === '🤖' && secondSlotText === '🤖' && thirdSlotText === '🤖') {
         return 10;
-    } else if (firstSlotText === '💻' && secondSlotText === '💻' && thirdSlotText === '💻') {
+    } 
+    
+    if (firstSlotText === '💻' && secondSlotText === '💻' && thirdSlotText === '💻') {
         return 15;
-    } else if (firstSlotText === '🎟️' && secondSlotText === '🎟️' && thirdSlotText === '🎟️') {
+    }
+    
+    if (firstSlotText === '🎟️' && secondSlotText === '🎟️' && thirdSlotText === '🎟️') {
         return 20;
-    } else if (firstSlotText === '🃏' && secondSlotText === '🃏' && thirdSlotText === '🃏') {
+    }
+    
+    if (firstSlotText === '🃏' && secondSlotText === '🃏' && thirdSlotText === '🃏') {
         return 30;
-    } else if (firstSlotText === '🦝' && secondSlotText === '🦝' ||
+    }
+    
+    if (firstSlotText === '🦝' && secondSlotText === '🦝' ||
         firstSlotText === '🦝' && thirdSlotText === '🦝' ||
         secondSlotText === '🦝' && thirdSlotText === '🦝') {
-        return 40;
-    } else if (firstSlotText === '🦝' && secondSlotText === '🦝' && thirdSlotText === '🦝') {
-        return 100;
-    } else {
-        return 0; // Default value if no winning combination
+        return 10;
     }
+    
+    if (firstSlotText === '🦝' && secondSlotText === '🦝' && thirdSlotText === '🦝') {
+        return 100;
+    } 
+    return 0; 
 }
 
+// Function to display the winning message
 function displayWinningMessage(credit) {
     const countdown = document.getElementById('val')
     const overlay = document.getElementById('overlay');
@@ -126,8 +154,18 @@ function displayWinningMessage(credit) {
     }
 }
 
+// Function to display the lost message
 function showLostMessage() {
     document.getElementById('lost').classList.remove('hide-message');
-    document.getElementById('spins').textContent = `You lost after ${spinCounter} spins`;
+    document.getElementById('lost').classList.add('show-message');
+    document.getElementById('spins').textContent = `You lost after ${spinCounter} spins and won ${winCount} times!`;
     document.getElementById('overlay').classList.add('overlay');
+}
+
+// Function to reset the game
+function resetGame() {
+    localStorage.setItem('winCount', 0);
+    localStorage.setItem('credit', 100);
+    localStorage.setItem('spinCounter', 0);
+    location.reload();
 }
